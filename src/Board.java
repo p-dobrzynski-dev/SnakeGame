@@ -85,7 +85,7 @@ public class Board {
             snake.extendSnake(apple.getPoint());
             apple.setPoint(getRandomPoint());
         } else if (!snake.getPointsList().get(0).inRange(0, 0, nrOfRows - 1, nrOfColumns - 1)) {
-            snake.setCollisionPoint();
+            snake.setHeadAsCollisionPoint();
             resetBoard();
             return;
         } else if (snake.checkItselfCollision()) {

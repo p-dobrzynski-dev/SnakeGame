@@ -15,16 +15,27 @@ public class Snake {
         this.point = point;
     }
 
+    /***
+     * Getting current score based on snake length
+     *
+     * @return Current score
+     */
     public int getScore() {
         int score = (listOfPoints.size() - 1) * 10;
         return score;
     }
 
+    /***
+     * Getting list of Points in snake
+     *
+     * @return list of points in snake
+     */
     public List<Point> getPointsList() {
         return listOfPoints;
     }
 
-    public void setCollisionPoint() {
+
+    public void setHeadAsCollisionPoint() {
         collisionPoint = new Point(listOfPoints.get(0));
     }
 
@@ -40,6 +51,10 @@ public class Snake {
         }
     }
 
+
+    /***
+     * Setting snake direction to move UP
+     */
     public void setDirUp() {
         if (yDirection == 1 && listOfPoints.size() > 1) {
             return;
@@ -48,6 +63,9 @@ public class Snake {
         yDirection = -1;
     }
 
+    /***
+     * Setting snake direction to move DOWN
+     */
     public void setDirDown() {
         if (yDirection == -1 && listOfPoints.size() > 1) {
             return;
@@ -56,6 +74,9 @@ public class Snake {
         yDirection = 1;
     }
 
+    /***
+     * Setting snake direction to move LEFT
+     */
     public void setDirLeft() {
         if (xDirection == 1 && listOfPoints.size() > 1) {
             return;
@@ -64,6 +85,9 @@ public class Snake {
         yDirection = 0;
     }
 
+    /***
+     * Setting snake direction to move RIGHT
+     */
     public void setDirRight() {
         if (xDirection == -1 && listOfPoints.size() > 1) {
             return;
@@ -72,6 +96,9 @@ public class Snake {
         yDirection = 0;
     }
 
+    /***
+     * Move snake towards next point based on directions
+     */
     public void moveSnake() {
         for (int i = listOfPoints.size() - 1; i >= 1; i--) {
             listOfPoints.get(i).updateByPoint(listOfPoints.get(i - 1));
@@ -79,10 +106,20 @@ public class Snake {
         listOfPoints.get(0).shiftPoint(xDirection, yDirection);
     }
 
+    /***
+     * Extending Snake points list by point
+     *
+     * @param point Point of extension
+     */
     public void extendSnake(Point point) {
         listOfPoints.add(point);
     }
 
+    /***
+     * Checking if snake didn't collide with itself
+     *
+     * @return Collision detected
+     */
     public boolean checkItselfCollision() {
         for (int i = 0; i < listOfPoints.size(); i++) {
             for (int j = i + 1; j < listOfPoints.size(); j++) {

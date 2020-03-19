@@ -9,11 +9,20 @@ public class GameEngine{
     private long lastRefreshTime;
     private boolean keyAvailable = true;
 
+    /***
+     * Constructor for class GameEngine
+     *
+     * @param board Board class object
+     * @param context GraphicsContext class object
+     */
     public GameEngine(Board board, GraphicsContext context){
         this.board = board;
         this.context = context;
     }
 
+    /***
+     * Starting game
+     */
     public void startGame(){
         lastRefreshTime = System.currentTimeMillis();
         AnimationTimer animator = new AnimationTimer(){
@@ -30,9 +39,20 @@ public class GameEngine{
         animator.start();
     }
 
+    /***
+     * Checking if new pressed key can change snake movement direction
+     *
+     * @return Is key available to press
+     */
     public boolean isKeyAvailable(){
         return keyAvailable;
     }
+
+    /***
+     * Dupa
+     *
+     * @param isAvailable
+     */
     public void setKeyAvailable(boolean isAvailable){
         keyAvailable = isAvailable;
     }
