@@ -13,6 +13,13 @@ public class Board {
 
     private int pixelSize = 30;
 
+    /***
+     * Constructor for Board class
+     *
+     * @param width Width of application screen
+     * @param height Height of application screen
+     */
+
     public Board(int width, int height) {
         // Setting board size
         this.boardWidth = width;
@@ -30,6 +37,10 @@ public class Board {
 
     }
 
+    /***
+     * Resetting Snake and Apple object to start new game
+     */
+
     public void resetBoard() {
         //Adding snake to game
         snake = new Snake(new Point(nrOfColumns / 2, nrOfRows / 2));
@@ -38,6 +49,11 @@ public class Board {
         apple = new Apple(new Point(5, 5));
     }
 
+    /***
+     * Paint board with background, snake, apple and score
+     *
+     * @param context JavaFX GraphicsContext object
+     */
 
     public void paintBoard(GraphicsContext context) {
 
@@ -68,32 +84,48 @@ public class Board {
 
     }
 
-
+    /***
+     * Getting random number in range specified range
+     *
+     * @param from From number
+     * @param to To number
+     * @return Random number
+     */
     private static Integer getRandomIntFromRange(int from, int to) {
-        int value = ((int) (Math.random() * (to - from))) + from;
-        return value;
+        return ((int) (Math.random() * (to - from))) + from;
     }
 
+    /***
+     * Getting snake object
+     *
+     * @return Snake object
+     */
     public Snake getSnake() {
         return snake;
     }
 
+
+    /***
+     * Method updates snake position and checks if snake didn't collide with a wall or collide with itself
+     */
     public void updateBoard() {
         snake.moveSnake();
-
         if (snake.getPointsList().get(0).isEqual(apple.getPoint())) {
             snake.extendSnake(apple.getPoint());
             apple.setPoint(getRandomPoint());
         } else if (!snake.getPointsList().get(0).inRange(0, 0, nrOfRows - 1, nrOfColumns - 1)) {
             snake.setHeadAsCollisionPoint();
             resetBoard();
-            return;
         } else if (snake.checkItselfCollision()) {
             resetBoard();
-            return;
         }
     }
 
+    /***
+     * Getting random Point class object which is not part of snake
+     *
+     * @return Random Point
+     */
     private Point getRandomPoint() {
         outerLoop:
         while (true) {
@@ -101,9 +133,7 @@ public class Board {
             int randomY = getRandomIntFromRange(0, nrOfColumns);
 
             for (Point point : snake.getPointsList()) {
-                if (randomX != point.getX() && randomY != point.getY()) {
-                    continue;
-                } else {
+                if (randomX == point.getX() && randomY == point.getY()) {
                     continue outerLoop;
                 }
             }

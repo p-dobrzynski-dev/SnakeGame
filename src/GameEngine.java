@@ -49,9 +49,9 @@ public class GameEngine{
     }
 
     /***
-     * Dupa
+     * Setting if its possible to use new pressed key
      *
-     * @param isAvailable
+     * @param isAvailable Is available
      */
     public void setKeyAvailable(boolean isAvailable){
         keyAvailable = isAvailable;

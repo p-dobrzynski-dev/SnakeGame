@@ -36,7 +36,7 @@ public class Snake {
 
 
     public void setHeadAsCollisionPoint() {
-        collisionPoint = new Point(listOfPoints.get(0));
+        collisionPoint = listOfPoints.get(0);
     }
 
     public Point getCollisionPoint() {
@@ -44,11 +44,7 @@ public class Snake {
     }
 
     public boolean isCollision() {
-        if (collisionPoint == null) {
-            return false;
-        } else {
-            return true;
-        }
+        return collisionPoint != null;
     }
 
 
@@ -101,7 +97,7 @@ public class Snake {
      */
     public void moveSnake() {
         for (int i = listOfPoints.size() - 1; i >= 1; i--) {
-            listOfPoints.get(i).updateByPoint(listOfPoints.get(i - 1));
+            listOfPoints.get(i).setPoint(listOfPoints.get(i - 1));
         }
         listOfPoints.get(0).shiftPoint(xDirection, yDirection);
     }

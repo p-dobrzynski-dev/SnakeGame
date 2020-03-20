@@ -20,6 +20,11 @@ public class App extends Application {
         launch(args);
     }
 
+    /***
+     * Overriding build in JavaFx method "start"
+     *
+     * @param primaryStage -
+     */
     @Override
     public void start(Stage primaryStage) {
 
@@ -52,10 +57,6 @@ public class App extends Application {
                 }
                 gameEngine.setKeyAvailable(false);
             }
-            else {
-                return;
-            }
-
         });
 
         root.getChildren().add(canvas);
