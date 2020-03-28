@@ -1,0 +1,24 @@
+.root{
+    -fx-background-color: #6ab04c;
+    -fx-focus-color: transparent;
+}
+.button{
+    -fx-font: 30 arial;
+    -fx-base: #e55039;
+    -fx-text-fill: #ffffff;
+    -fx-stroke-width: 10;
+    -fx-background-radius: 5;
+}
+
+.gameTitleLabel{
+    -fx-font: 75 arial;
+    -fx-text-fill: #ecf0f1;
+    -fx-effect: dropshadow(three-pass-box, rgba(81, 81, 81, 0.51), 25, 0, 0, 0);
+}
+
+.gameInfoLabel{
+    -fx-font: 18 arial;
+    -fx-text-fill: #ecf0f1;
+    -fx-background-color: #ffffff28;
+    -fx-background-radius: 5;
+}

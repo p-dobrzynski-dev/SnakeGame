@@ -5,7 +5,6 @@ public class GameEngine{
 
     private Board board;
     private GraphicsContext context;
-    private AnimationTimer animator;
     private long lastRefreshTime;
     private boolean keyAvailable = true;
 
@@ -28,6 +27,7 @@ public class GameEngine{
         AnimationTimer animator = new AnimationTimer(){
             @Override
             public void handle(long l) {
+                // Refreshing game board
                 long currentTime = System.currentTimeMillis();
                 if ((currentTime-lastRefreshTime)>100){
                     board.paintBoard(context);
@@ -36,6 +36,7 @@ public class GameEngine{
                 }
             }
         };
+        // Starting constant animation
         animator.start();
     }
 

@@ -7,7 +7,6 @@ public class Snake {
     private List<Point> listOfPoints;
     private int xDirection;
     private int yDirection;
-    private Point collisionPoint;
 
     public Snake(Point point) {
         listOfPoints = new LinkedList<>();
@@ -21,8 +20,7 @@ public class Snake {
      * @return Current score
      */
     public int getScore() {
-        int score = (listOfPoints.size() - 1) * 10;
-        return score;
+        return (listOfPoints.size() - 1) * 10;
     }
 
     /***
@@ -33,20 +31,6 @@ public class Snake {
     public List<Point> getPointsList() {
         return listOfPoints;
     }
-
-
-    public void setHeadAsCollisionPoint() {
-        collisionPoint = listOfPoints.get(0);
-    }
-
-    public Point getCollisionPoint() {
-        return collisionPoint;
-    }
-
-    public boolean isCollision() {
-        return collisionPoint != null;
-    }
-
 
     /***
      * Setting snake direction to move UP
@@ -120,7 +104,6 @@ public class Snake {
         for (int i = 0; i < listOfPoints.size(); i++) {
             for (int j = i + 1; j < listOfPoints.size(); j++) {
                 if (listOfPoints.get(i).getX() == listOfPoints.get(j).getX() && listOfPoints.get(i).getY() == listOfPoints.get(j).getY()) {
-
                     return true;
                 }
             }

@@ -79,6 +79,8 @@ public class Board {
             context.fillRect(topLeftX + 1, topLeftY + 1, pixelSize - 2, pixelSize - 2);
         }
         context.setFill(Color.WHITE);
+
+        // Drawing score field
         double fontSize = context.getFont().getSize();
         context.fillText("SCORE : " + snake.getScore(), 10, 2 * fontSize);
 
@@ -109,16 +111,20 @@ public class Board {
      * Method updates snake position and checks if snake didn't collide with a wall or collide with itself
      */
     public void updateBoard() {
+
+        // Moving snake based on velocity direction
         snake.moveSnake();
+
+        // Checking if snake hit the apple
         if (snake.getPointsList().get(0).isEqual(apple.getPoint())) {
             snake.extendSnake(apple.getPoint());
             apple.setPoint(getRandomPoint());
-        } else if (!snake.getPointsList().get(0).inRange(0, 0, nrOfRows - 1, nrOfColumns - 1)) {
-            snake.setHeadAsCollisionPoint();
-            resetBoard();
-        } else if (snake.checkItselfCollision()) {
+        }
+        // Checking if snake hit the wall or collide with itself
+        else if ((!snake.getPointsList().get(0).inRange(0, 0, nrOfRows - 1, nrOfColumns - 1)) || (snake.checkItselfCollision())) {
             resetBoard();
         }
+
     }
 
     /***
