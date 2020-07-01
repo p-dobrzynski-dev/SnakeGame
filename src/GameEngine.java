@@ -20,7 +20,7 @@ public class GameEngine{
     }
 
     /***
-     * Starting game
+     * Starting game engine
      */
     public void startGame(){
         lastRefreshTime = System.currentTimeMillis();

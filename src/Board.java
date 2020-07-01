@@ -33,7 +33,7 @@ public class Board {
         snake = new Snake(new Point(nrOfRows / 2, nrOfColumns / 2));
 
         //Adding apple to board
-        apple = new Apple(new Point(5, 5));
+        apple = new Apple(getRandomPoint());
 
     }
 
@@ -89,12 +89,11 @@ public class Board {
     /***
      * Getting random number in range specified range
      *
-     * @param from From number
      * @param to To number
      * @return Random number
      */
-    private static Integer getRandomIntFromRange(int from, int to) {
-        return ((int) (Math.random() * (to - from))) + from;
+    private static Integer getRandomIntFromRange(int to) {
+        return ((int) (Math.random() * (to)));
     }
 
     /***
@@ -135,8 +134,15 @@ public class Board {
     private Point getRandomPoint() {
         outerLoop:
         while (true) {
-            int randomX = getRandomIntFromRange(0, nrOfRows);
-            int randomY = getRandomIntFromRange(0, nrOfColumns);
+
+            int randomX = getRandomIntFromRange(nrOfRows);
+            int randomY = getRandomIntFromRange(nrOfColumns);
+
+            // Checking if board is full
+            if (snake.getPointsList().size() == nrOfRows * nrOfColumns) {
+                resetBoard();
+                return new Point(randomX, randomY);
+            }
 
             for (Point point : snake.getPointsList()) {
                 if (randomX == point.getX() && randomY == point.getY()) {

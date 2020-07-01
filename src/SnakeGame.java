@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
 
-public class App extends Application {
+public class SnakeGame extends Application {
 
     private Board gameBoard;
     private GameEngine gameEngine;
@@ -41,6 +41,7 @@ public class App extends Application {
         gameEngine = new GameEngine(gameBoard, context);
         gameBoard.paintBoard(context);
 
+        // Capture keyboard keys
         canvas.setOnKeyPressed(e -> {
             if (gameEngine.isKeyAvailable()) {
                 Snake snake = gameBoard.getSnake();
@@ -62,6 +63,7 @@ public class App extends Application {
             }
         });
 
+        // Creating interface (menu and game scene)
         root.getChildren().add(canvas);
         Scene gameScene = new Scene(root);
 
@@ -92,6 +94,8 @@ public class App extends Application {
         primaryStage.setScene(menuScene);
 
         primaryStage.show();
+
+        // Starting game engine
         gameEngine.startGame();
     }
 }

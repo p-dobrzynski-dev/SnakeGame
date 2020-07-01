@@ -3,15 +3,18 @@ import java.util.List;
 
 public class Snake {
 
-    Point point;
     private List<Point> listOfPoints;
     private int xDirection;
     private int yDirection;
 
+    /***
+     * Constructor for Snake class
+     *
+     * @param point - Staring Point for Snake
+     */
     public Snake(Point point) {
         listOfPoints = new LinkedList<>();
         listOfPoints.add(point);
-        this.point = point;
     }
 
     /***
